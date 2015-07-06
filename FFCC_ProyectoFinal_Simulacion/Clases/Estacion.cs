@@ -10,14 +10,14 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
     public class Estacion
     {
         private string _nombre;
-        private int _tiempoComprometido;
+        private DateTime _tiempoComprometido;
         private int _personasEsperandoTren;
 
 
         public Estacion(string n)
         {
             _nombre = n;
-            _tiempoComprometido = 0;
+            _tiempoComprometido = new DateTime(0);
             _personasEsperandoTren = 0;
         }
 
