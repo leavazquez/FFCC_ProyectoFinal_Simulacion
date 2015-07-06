@@ -27,7 +27,7 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
             set { _nombre = value; }
         }
 
-        public int TiempoComprometido
+        public DateTime TiempoComprometido
         {
             get { return _tiempoComprometido; }
             set { _tiempoComprometido = value; }
