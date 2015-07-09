@@ -8,28 +8,73 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
 {
     public class Tren
     {
-        private List<Coche> _formacion;
+        private List<Vagon> _formacion;
         private decimal _volocidadPromedio;
+        private decimal _consumoCombustiblePromedioMovimiento;
+        private decimal _consumoCombustiblePromedioParado;
+        private decimal _totalConsumoCombustibleMovimiento = 0;
+        private decimal _totalCosumoCombustibleParado = 0;
         private int _pasajerosABordo;
-        private Estacion _proximaEstacion;
-        private Estacion _estacionActual;
         private Traza _trazaTren;
+        private int _totalDemoraIncidente = 0;
+        private int _totalDemoraEstacion = 0;
+        private int _vecesDemoradoIncidente = 0;
+        private int _vecesDemoradoEstacion = 0;
 
-        public Tren(List<Coche> f,decimal v)
+        public Tren(List<Vagon> f,decimal v)
         {
             _formacion = f;
             _volocidadPromedio = v;
             _pasajerosABordo = 0;
         }
 
-        public Estacion EstacionActual
-        { 
-            get { return _estacionActual; } 
+        public decimal ConsumoCombustiblePromedioMovimiento
+        {
+            get { return _consumoCombustiblePromedioMovimiento; }
         }
 
-        public Estacion ProximaEstacion
+        public decimal ConsumoCombustiblePromedoParado
         {
-            get { return _proximaEstacion; }
+            get { return _consumoCombustiblePromedioParado; }
+        }
+
+        public decimal TotalConsumoCombustibleMovimiento
+        {
+            get { return _totalConsumoCombustibleMovimiento; }
+        }
+
+        public decimal TotalConsumoCombustibleParado
+        {
+            get { return _totalCosumoCombustibleParado; }
+        }
+
+        public decimal ConsumoTotalCombustible
+        {
+            get { return _totalConsumoCombustibleMovimiento + _totalCosumoCombustibleParado; }
+        }
+
+        public int TotalDemoraIncidene
+        {
+            get { return _totalDemoraIncidente; }
+            set { _totalDemoraIncidente = value; }
+        }
+
+        public int TotalDemoraEstacion
+        {
+            get { return _totalDemoraEstacion; }
+            set { _totalDemoraEstacion = value; }
+        }
+
+        public int VecesDemoradoIncidente
+        {
+            get { return _vecesDemoradoIncidente; }
+            set { _vecesDemoradoIncidente = value; }
+        }
+
+        public int VecesDemoradoEstacion
+        {
+            get { return _vecesDemoradoEstacion; }
+            set { _vecesDemoradoEstacion = value; }
         }
 
         public decimal VelocidadPromedio
@@ -42,12 +87,18 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
             get { return _pasajerosABordo; }
         }
 
+        public Traza TrazaTren
+        {
+            get { return _trazaTren; }
+            set { _trazaTren = value; }
+        }
+
         public int CapacidadMaximaPasajeros
         {
             get
             {
                 int total = 0;
-                foreach (Coche c in _formacion)
+                foreach (Vagon c in _formacion)
                     total = total + c.CapacidadPasajerosCoche;
 
                 return total;
@@ -75,7 +126,18 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
         {
             if (pasajerosNuevos <= this.CapacidadMaximaPasajeros)
                 _pasajerosABordo = _pasajerosABordo + pasajerosNuevos;
-            /*aca habria que poner que si sale por falso arroje una expepcion*/
+            else
+                throw new System.ArgumentException("La cantidad de pasajeros es mayor a la capacidad del tren");
+        }
+
+        public void CalcularConsumoCombustibleMovimiento(decimal distancia)
+        {
+            _totalConsumoCombustibleMovimiento += distancia * _consumoCombustiblePromedioMovimiento;
+        }
+
+        public void CalcularConsumoCombustibleParado(decimal tiempoParado)
+        {
+            _totalCosumoCombustibleParado += tiempoParado * _consumoCombustiblePromedioParado;
         }
     }
 }

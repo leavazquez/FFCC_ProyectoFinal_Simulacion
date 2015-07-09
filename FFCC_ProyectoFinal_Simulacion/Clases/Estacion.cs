@@ -10,15 +10,17 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
     public class Estacion
     {
         private string _nombre;
-        private DateTime _tiempoComprometido;
+        private int _tiempoComprometido;
         private int _personasEsperandoTren;
+        private List<Incidente> _incidentesPosibles;
 
 
-        public Estacion(string n)
+        public Estacion(string n,List<Incidente> incidentes)
         {
             _nombre = n;
-            _tiempoComprometido = new DateTime(0);
+            _tiempoComprometido = 0;
             _personasEsperandoTren = 0;
+            _incidentesPosibles = incidentes;
         }
 
         public string Nombre
@@ -27,7 +29,7 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
             set { _nombre = value; }
         }
 
-        public DateTime TiempoComprometido
+        public int TiempoComprometido
         {
             get { return _tiempoComprometido; }
             set { _tiempoComprometido = value; }
@@ -37,6 +39,13 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
         {
             get { return _personasEsperandoTren; }
             set { _personasEsperandoTren = value; }
+        }
+
+        /*Conjunto de incidentes posibles que puede sufrir el tren antes de llegar a la estacion*/
+        public List<Incidente> IncidentesPosibles
+        {
+            get { return _incidentesPosibles; }
+            set { _incidentesPosibles = value; }
         }
 
         /*Esta funcion lo que hace es devolver un entero que simbolisa la cantidad de gente nueva que acava de llegar
@@ -51,14 +60,40 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
          en bajar del tren y subir al mismo*/
         public int TiempoAtencionTren()
         {
-            /*por el momento retorna siemrpe 30, mas adelante sera reemplazado por alguna fdp*/
-            return 45;
+            /*por el momento retorna siemrpe 5 minutos, mas adelante sera reemplazado por alguna fdp*/
+            return 5;
         }
 
         public void ActualizarPersonasEsperandoTren()
         {
             int personas = this.CantidadPersonasArrivoAEstacion();
             _personasEsperandoTren = _personasEsperandoTren + personas;
+        }
+
+        /*Retorna la lista de incidentes que le van a ocurrir al tren hasta que llegue a esta estacion*/
+        public List<Incidente> GetIncidentesActivos()
+        {
+            List<Incidente> incidentesActivos = new List<Incidente>();
+
+            foreach(Incidente i in _incidentesPosibles)
+            {
+                if (i.OcurreIncidente())
+                    incidentesActivos.Add(i);
+            }
+
+            return incidentesActivos;
+        }
+
+        /*Retorna la demora total que va a sufrir el tren por incidentes sufridos hasta que llegue a la estacion*/
+        public int DemoraTotalIncidente()
+        {
+            int totalDemora = 0;
+            List<Incidente> incidentesActivos = this.GetIncidentesActivos();
+
+            foreach (Incidente i in incidentesActivos)
+                totalDemora = totalDemora + i.DemoraOcacionada;
+
+            return totalDemora;
         }
 
         /*Cuando se atiende un tren lo que sucede es que bajan pasajeros del mismo y luego suben personas de la estacion al tren*/

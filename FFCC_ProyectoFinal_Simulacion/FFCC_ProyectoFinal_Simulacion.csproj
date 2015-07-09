@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\Coche.cs" />
+    <Compile Include="Clases\Incidente.cs" />
+    <Compile Include="Clases\Vagon.cs" />
     <Compile Include="Clases\Estacion.cs" />
     <Compile Include="Clases\Simulador.cs" />
     <Compile Include="Clases\Traza.cs" />

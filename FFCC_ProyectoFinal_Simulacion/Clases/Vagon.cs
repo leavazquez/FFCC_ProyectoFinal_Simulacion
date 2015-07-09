@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace FFCC_ProyectoFinal_Simulacion.Clases
 {
     /*Los coches son los vagones del tren. Una formacion (o tren) esta compuesto por un conjunto de coches*/
-    public class Coche
+    public class Vagon
     {
         private string _modelo;
         /*Cantidad de pasajeros maxima que entre en el coche*/
         private int _capacidadPasajerosCoche;
 
-        public Coche(string m,int p)
+        public Vagon(string m,int p)
         {
             _modelo = m;
             _capacidadPasajerosCoche = p;
