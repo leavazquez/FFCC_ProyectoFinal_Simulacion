@@ -13,22 +13,20 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
         /*Cantidad de pasajeros maxima que entre en el coche*/
         private int _capacidadPasajerosCoche;
 
-        public Vagon(string m,int p)
+        public Vagon (string modelo, int cantPasajeros)
         {
-            _modelo = m;
-            _capacidadPasajerosCoche = p;
+            _modelo = modelo;
+            _capacidadPasajerosCoche = cantPasajeros;
         }
 
         public string Modelo
         {
             get { return _modelo; }
-            //set { _modelo = value; }
         }
 
         public int CapacidadPasajerosCoche
         {
             get { return _capacidadPasajerosCoche; }
-            //set { _capacidadPasajerosCoche = value; }
         }
     }
 }

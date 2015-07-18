@@ -6,19 +6,6 @@ using System.Threading.Tasks;
 
 namespace FFCC_ProyectoFinal_Simulacion.Clases
 {
-    public class CheckPoint
-    {
-        public Estacion estacion;
-        /*Esta variable lo que hace es identificar si el tren va a para en esta estacion o no. Esto sirve para crear
-         servicios diferenciales*/
-        public bool paraEnEstacion;
-        public int tiempoLlgedaEstacion;
-        public int tiempoSalidaEstacion;
-        public int posicionEstacionEnTraza;
-        public decimal distanciaHastaEstacion;
-        public int tiempoViaje;
-    }
-
     /*Las trazas representan el recorrido del tren desde una estacion inicio a una estacion fin*/
     public class Traza
     {

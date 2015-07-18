@@ -15,9 +15,9 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
         private List<Incidente> _incidentesPosibles;
 
 
-        public Estacion(string n,List<Incidente> incidentes)
+        public Estacion(string nombre, List<Incidente> incidentes)
         {
-            _nombre = n;
+            _nombre = nombre;
             _tiempoComprometido = 0;
             _personasEsperandoTren = 0;
             _incidentesPosibles = incidentes;
@@ -48,8 +48,8 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
             set { _incidentesPosibles = value; }
         }
 
-        /*Esta funcion lo que hace es devolver un entero que simbolisa la cantidad de gente nueva que acava de llegar
-         a las estacion y que espera al tren.*/
+        /*Esta funcion lo que hace es devolver un entero que simboliza la cantidad de gente nueva que acaba de llegar
+         a la estacion y que espera al tren.*/
         public int CantidadPersonasArrivoAEstacion()
         {
             /*por el momento retorna siemrpe 30, mas adelante sera reemplazado por alguna fdp*/
@@ -67,6 +67,7 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
         public void ActualizarPersonasEsperandoTren()
         {
             int personas = this.CantidadPersonasArrivoAEstacion();
+
             _personasEsperandoTren = _personasEsperandoTren + personas;
         }
 
@@ -100,6 +101,7 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
         public void AtencionTren(Tren unTren)
         {
             int personasAbordan;
+
             unTren.DesabordarTren();
 
             if(_personasEsperandoTren + unTren.PasajerosABordo > unTren.CapacidadMaximaPasajeros)

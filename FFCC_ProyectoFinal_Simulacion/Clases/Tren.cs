@@ -21,10 +21,10 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
         private int _vecesDemoradoIncidente = 0;
         private int _vecesDemoradoEstacion = 0;
 
-        public Tren(List<Vagon> f,decimal v)
+        public Tren(List<Vagon> formacion, decimal velPromedio)
         {
-            _formacion = f;
-            _volocidadPromedio = v;
+            _formacion = formacion;
+            _volocidadPromedio = velPromedio;
             _pasajerosABordo = 0;
         }
 
@@ -53,7 +53,7 @@ namespace FFCC_ProyectoFinal_Simulacion.Clases
             get { return _totalConsumoCombustibleMovimiento + _totalCosumoCombustibleParado; }
         }
 
-        public int TotalDemoraIncidene
+        public int TotalDemoraIncidente
         {
             get { return _totalDemoraIncidente; }
             set { _totalDemoraIncidente = value; }
